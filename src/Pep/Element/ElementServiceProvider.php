@@ -14,4 +14,8 @@ class ElementServiceProvider extends ServiceProvider {
     include __DIR__ . '/../../artisan.php';
   }
 
+  public function register() {
+
+  }
+
 }
