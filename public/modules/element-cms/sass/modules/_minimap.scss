@@ -1,0 +1,28 @@
+.minimap {
+  @include user-select(none);
+  padding: 0;
+}
+
+.minimap__scale {
+  overflow: scroll;
+
+  #container {
+    transform-origin: 0 0;
+  }
+
+  .popup {
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .popup__overlay {
+    display: none;
+  }
+}
+
+.minimap__highlight {
+  outline: 10px solid rgba($red, 0.5) !important;
+}

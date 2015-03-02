@@ -1,0 +1,10 @@
+.container {
+  overflow: auto;
+  width: 100% !important;
+  height: calc(100% - 50px);
+  padding-top: 50px;
+}
+
+.blocks__container {
+  padding: 0;
+}

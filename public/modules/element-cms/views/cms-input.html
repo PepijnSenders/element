@@ -1,0 +1,10 @@
+<div class="input-group">
+  <input type="text" class="form-control" id="{{ field.key }}" ng-disabled="disabled" ng-model="input.value">
+  <div class="input-group-addon btn-info btn" ng-click="history();">
+    History
+  </div>
+  <div class="input-group-addon btn-success btn" ng-click="update();">
+    Save
+  </div>
+</div>
+<div cms-history="histories"></div>

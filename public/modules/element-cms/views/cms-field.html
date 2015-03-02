@@ -1,0 +1,7 @@
+<td class="col-sm-3">
+  <label for="global.key" ng-bind="global.key | title"></label>
+</td>
+<td ng-switch="type" class="col-sm-9">
+  <div ng-switch-when="input" cms-input="global"></div>
+  <div ng-switch-when="textarea" cms-textarea="global"></div>
+</td>

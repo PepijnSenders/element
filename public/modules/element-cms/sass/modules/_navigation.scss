@@ -1,0 +1,18 @@
+.navigation {
+  width: 50px;
+  height: 100%;
+  position: fixed;
+  padding-top: 50px;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  background-color: #1F2837;
+
+  &:before {
+    box-shadow: inset -1px 0 1px rgba(black, .3);
+  }
+}
+
+.navigation--expanded {
+  width: 220px;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "element-cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PepijnSenders/element-cms.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PepijnSenders/element-cms/issues"
+  },
+  "homepage": "https://github.com/PepijnSenders/element-cms",
+  "dependencies": {
+    "change-case": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-noprotocol": "^0.5.2",
+    "sugar": "^1.4.1"
+  }
+}

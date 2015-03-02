@@ -1,0 +1,21 @@
+cmsMinimapApp.directive('cmsMinimapScale', function(EventWatcher, $window, TweenMax) {
+
+  return {
+    link: function postLink(scope, element, attrs) {
+      EventWatcher.addEvent('resize');
+      scope.$watch(function() {
+        return EventWatcher.events['resize'].timeStamp;
+      }, function() {
+        TweenMax.set(element.find('#container'), {
+          scale: .25 * $window.innerWidth / $window.innerWidth,
+          force3D: true
+        });
+        TweenMax.set(element[0].parentNode, {
+          width: '100%',
+          position: 'fixed'
+        });
+      });
+    }
+  };
+
+});

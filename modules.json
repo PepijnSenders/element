@@ -1,0 +1,20 @@
+{
+  "element-cms": {
+    "libs": [
+      "public/vendor/traceur/traceur.js",
+      "public/vendor/sugar/release/sugar-full.development.js",
+      "public/vendor/greensock/src/uncompressed/TweenMax.js",
+      "public/vendor/angular-tweenmax/dist/angular-tweenmax.js",
+      "public/vendor/angular-eventwatcher/dist/angular-eventwatcher.js"
+    ],
+    "app": {
+      "deps": ["elementCmsMinimapApp"]
+    },
+    "sass": true
+  },
+  "element-cms/minimap": {
+    "app": {
+      "deps": ["eventwatcherApp", "tweenmaxApp"]
+    }
+  }
+}

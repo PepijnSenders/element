@@ -10,7 +10,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4",
-        "laravel/framework": "4.*"
+        "laravel/framework": "4.*",
+        "jenssegers/mongodb": "2.0.4"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*"

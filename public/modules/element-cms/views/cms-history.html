@@ -1,0 +1,11 @@
+<ul ng-if="histories.length" class="history-list">
+  <li ng-repeat="history in histories" class="history-list__item">
+    <samp ng-bind="history.created_at"></samp>: <a target="_blank" ng-bind="history.user" ng-href="{{linkBase + history.user}}"></a> edited to <span ng-bind="history.value"></span>
+  </li>
+  <li>
+    <a ng-click="loadMore();" ng-if="!finished">Load more</a>
+  </li>
+</ul>
+<div class="history-list" ng-if="histories && !histories.length">
+  No recent history on this field.
+</div>
