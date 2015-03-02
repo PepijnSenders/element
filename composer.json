@@ -13,6 +13,11 @@
         "laravel/framework": "4.*",
         "jenssegers/mongodb": "2.*"
     },
+    "autoload": {
+        "psr-0": {
+            "Pep\\Element": "src/"
+        }
+    },
     "require-dev": {
         "mockery/mockery": "0.9.*"
     }
