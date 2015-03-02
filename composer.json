@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.4",
         "laravel/framework": "4.*",
-        "jenssegers/mongodb": "2.0.4"
+        "jenssegers/mongodb": "2.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*"
