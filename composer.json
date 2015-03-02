@@ -14,8 +14,13 @@
         "jenssegers/mongodb": "2.*"
     },
     "autoload": {
-        "psr-0": {
-            "Pep\\Element": "src/"
+        "classmap": [
+            "src/commands",
+            "src/models",
+            "src/controllers"
+        ],
+        "psr-4": {
+          "Pep\\": "src/Pep"
         }
     },
     "require-dev": {
