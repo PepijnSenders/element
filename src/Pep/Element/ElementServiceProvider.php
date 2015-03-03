@@ -11,11 +11,12 @@ class ElementServiceProvider extends ServiceProvider {
 
     include __DIR__ . '/../../filters.php';
     include __DIR__ . '/../../routes.php';
-    include __DIR__ . '/../../artisan.php';
   }
 
   public function register() {
-
+    $this->app->bind('element::user:create', function($app) {
+      return Pep\Element\Commands\User\CreateCommand;
+    });
   }
 
 }
