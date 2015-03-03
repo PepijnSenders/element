@@ -8,7 +8,7 @@ use Pep\Element\User\CmsUser;
 
 class CreateCommand extends Command {
 
-  protected $name = 'element-cms::user:create';
+  protected $name = 'element-cms:user:create';
 
   protected $description = 'Create user for element CMS.';
 
