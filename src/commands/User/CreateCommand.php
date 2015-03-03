@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Pep\Element\User\CmsUser;
 
-class CreateUserCommand extends Command {
+class CreateCommand extends Command {
 
   protected $name = 'element-cms::user:create';
 

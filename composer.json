@@ -19,8 +19,8 @@
             "src/models",
             "src/controllers"
         ],
-        "psr-4": {
-          "Pep\\": "src/Pep"
+        "psr-0": {
+          "Pep\\Element": "src/"
         }
     },
     "require-dev": {

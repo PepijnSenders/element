@@ -1,5 +1,5 @@
 <?php
 
-use Pep\Element\Commands\User\RandomPasswordCommand;
+use Pep\Element\Commands\User\CreateCommand;
 
-Artisan::add(new RandomPasswordCommand);
+Artisan::add(new CreateCommand);
