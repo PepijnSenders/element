@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Config;
 class Auth {
 
   public static function check() {
-    $permission = Config::get('element-cms::cms.permission');
+    $permission = Config::get('element::cms.permission');
 
     $response = $permission();
 

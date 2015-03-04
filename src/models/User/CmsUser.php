@@ -6,6 +6,6 @@ use Pep\Element\Models\MongoModel;
 
 class CmsUser extends MongoModel {
 
-  protected $collection = 'element-cms::cms_users';
+  protected $collection = 'element::cms_users';
 
 }

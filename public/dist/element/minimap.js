@@ -1,5 +1,5 @@
 "use strict";
-var elementCmsMinimapApp = angular.module('elementCmsMinimapApp', ["eventwatcherApp", "tweenmaxApp"]);
+var elementMinimapApp = angular.module('elementMinimapApp', ["eventwatcherApp", "tweenmaxApp"]);
 cmsMinimapApp.directive('block', ["Blocks", function(Blocks) {
   return {
     scope: {'id': '@block'},
@@ -74,4 +74,4 @@ cmsMinimapApp.directive('cmsMinimapScale', ["EventWatcher", "$window", "TweenMax
     }};
 }]);
 
-//# sourceMappingURL=../element-cms/minimap.js.map
+//# sourceMappingURL=../element/minimap.js.map

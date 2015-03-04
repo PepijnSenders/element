@@ -1,10 +1,10 @@
-@extends('element-cms::layouts.default')
+@extends('element::layouts.default')
 
-@section('element-cms::title')
+@section('element::title')
 Minimap &mdash; {{ Str::title($key) }}
 @stop
 
-@section('element-cms::content')
+@section('element::content')
 <div class="row">
   <div class="minimap">
     <div cms-minimap-highlight cms-minimap-scale class="minimap__scale" id="{{ $minimap->getNamespace() }}" ng-cloak>
@@ -31,7 +31,7 @@ Minimap &mdash; {{ Str::title($key) }}
 </div>
 @stop
 
-@section('element-cms::header.styles')
+@section('element::header.styles')
 <style type="text/css">
   {{ $minimap->getStyle() }}
 </style>

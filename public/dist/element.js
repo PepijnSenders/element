@@ -1,5 +1,5 @@
 "use strict";
-var elementCmsApp = angular.module('elementCmsApp', ["elementCmsMinimapApp"]);
+var elementApp = angular.module('elementApp', ["elementCmsMinimapApp"]);
 cmsApp.constant('MODULE_BASE', 'modules/cms/views');
 cmsApp.run(["$rootScope", function($rootScope) {
   var events = ['header.expand'];
@@ -259,11 +259,11 @@ cmsApp.filter('title', function() {
     return input.replace(/\#/g, ' ').titleize();
   };
 });
-angular.module("elementCmsApp").run(['$templateCache', function(a) {
-  a.put('/modules/element-cms/views/cms-textarea.html', '<div class="input-group">\n' + '  <textarea type="text" ng-disabled="disabled" class="form-control" id="{{ field.key }}" ng-model="input.value"></textarea>\n' + '  <div class="input-group-addon btn-info btn" ng-click="history();">\n' + '    History\n' + '  </div>\n' + '  <div class="input-group-addon btn btn-success" ng-click="update();">\n' + '    Save\n' + '  </div>\n' + '</div>\n' + '<div cms-history="histories"></div>');
-  a.put('/modules/element-cms/views/cms-input.html', '<div class="input-group">\n' + '  <input type="text" class="form-control" id="{{ field.key }}" ng-disabled="disabled" ng-model="input.value">\n' + '  <div class="input-group-addon btn-info btn" ng-click="history();">\n' + '    History\n' + '  </div>\n' + '  <div class="input-group-addon btn-success btn" ng-click="update();">\n' + '    Save\n' + '  </div>\n' + '</div>\n' + '<div cms-history="histories"></div>');
-  a.put('/modules/element-cms/views/cms-history.html', '<ul ng-if="histories.length" class="history-list">\n' + '  <li ng-repeat="history in histories" class="history-list__item">\n' + '    <samp ng-bind="history.created_at"></samp>: <a target="_blank" ng-bind="history.user" ng-href="{{linkBase + history.user}}"></a> edited to <span ng-bind="history.value"></span>\n' + '  </li>\n' + '  <li>\n' + '    <a ng-click="loadMore();" ng-if="!finished">Load more</a>\n' + '  </li>\n' + '</ul>\n' + '<div class="history-list" ng-if="histories && !histories.length">\n' + '  No recent history on this field.\n' + '</div>');
-  a.put('/modules/element-cms/views/cms-field.html', '<td class="col-sm-3">\n' + '  <label for="global.key" ng-bind="global.key | title"></label>\n' + '</td>\n' + '<td ng-switch="type" class="col-sm-9">\n' + '  <div ng-switch-when="input" cms-input="global"></div>\n' + '  <div ng-switch-when="textarea" cms-textarea="global"></div>\n' + '</td>');
+angular.module("elementApp").run(['$templateCache', function(a) {
+  a.put('/modules/element/views/cms-textarea.html', '<div class="input-group">\n' + '  <textarea type="text" ng-disabled="disabled" class="form-control" id="{{ field.key }}" ng-model="input.value"></textarea>\n' + '  <div class="input-group-addon btn-info btn" ng-click="history();">\n' + '    History\n' + '  </div>\n' + '  <div class="input-group-addon btn btn-success" ng-click="update();">\n' + '    Save\n' + '  </div>\n' + '</div>\n' + '<div cms-history="histories"></div>');
+  a.put('/modules/element/views/cms-input.html', '<div class="input-group">\n' + '  <input type="text" class="form-control" id="{{ field.key }}" ng-disabled="disabled" ng-model="input.value">\n' + '  <div class="input-group-addon btn-info btn" ng-click="history();">\n' + '    History\n' + '  </div>\n' + '  <div class="input-group-addon btn-success btn" ng-click="update();">\n' + '    Save\n' + '  </div>\n' + '</div>\n' + '<div cms-history="histories"></div>');
+  a.put('/modules/element/views/cms-history.html', '<ul ng-if="histories.length" class="history-list">\n' + '  <li ng-repeat="history in histories" class="history-list__item">\n' + '    <samp ng-bind="history.created_at"></samp>: <a target="_blank" ng-bind="history.user" ng-href="{{linkBase + history.user}}"></a> edited to <span ng-bind="history.value"></span>\n' + '  </li>\n' + '  <li>\n' + '    <a ng-click="loadMore();" ng-if="!finished">Load more</a>\n' + '  </li>\n' + '</ul>\n' + '<div class="history-list" ng-if="histories && !histories.length">\n' + '  No recent history on this field.\n' + '</div>');
+  a.put('/modules/element/views/cms-field.html', '<td class="col-sm-3">\n' + '  <label for="global.key" ng-bind="global.key | title"></label>\n' + '</td>\n' + '<td ng-switch="type" class="col-sm-9">\n' + '  <div ng-switch-when="input" cms-input="global"></div>\n' + '  <div ng-switch-when="textarea" cms-textarea="global"></div>\n' + '</td>');
 }]);
 
-//# sourceMappingURL=element-cms.js.map
+//# sourceMappingURL=element.js.map

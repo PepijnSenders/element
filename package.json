@@ -1,5 +1,5 @@
 {
-  "name": "element-cms",
+  "name": "element",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PepijnSenders/element-cms.git"
+    "url": "https://github.com/PepijnSenders/element.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PepijnSenders/element-cms/issues"
+    "url": "https://github.com/PepijnSenders/element/issues"
   },
-  "homepage": "https://github.com/PepijnSenders/element-cms",
+  "homepage": "https://github.com/PepijnSenders/element",
   "dependencies": {
     "change-case": "^2.2.0",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
+    "gulp-livereload": "^3.8.0",
     "gulp-noprotocol": "^0.5.2",
     "sugar": "^1.4.1"
   }

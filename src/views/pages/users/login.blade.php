@@ -1,10 +1,10 @@
-@extends('element-cms::layouts.default')
+@extends('element::layouts.default')
 
-@section('element-cms::title')
+@section('element::title')
 Login
 @stop
 
-@section('element-cms::content')
+@section('element::content')
 <legend>
   <h1>Welcome, to the Honor CMS.</h1>
   <p>Please login to gain entry</p>
