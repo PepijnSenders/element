@@ -6,11 +6,6 @@ Minimap &mdash; {{ Str::title($key) }}
 
 @section('element::content')
 <div class="row">
-  <div class="minimap">
-    <div cms-minimap-highlight cms-minimap-scale class="minimap__scale" id="{{ $minimap->getNamespace() }}" ng-cloak>
-      {{ $minimap->getContainer() }}
-    </div>
-  </div>
   <div class="col-sm-9 col-sm-offset-3 blocks__container" ng-controller="BlocksCtrl">
     <ul class="blocks-list">
       <li ng-repeat="block in blocks" class="blocks-list__item">

@@ -1,4 +1,4 @@
-cmsApp.factory('HoverField', function() {
+elementApp.factory('HoverField', function() {
 
   return {
     currentIdentifier: ''

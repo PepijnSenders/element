@@ -1,4 +1,4 @@
-cmsApp.filter('title', function() {
+elementApp.filter('title', function() {
 
   return function(input) {
     var pieces = input.split('.');

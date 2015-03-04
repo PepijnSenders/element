@@ -1,4 +1,4 @@
-cmsMinimapApp.directive('cmsMinimapScale', function(EventWatcher, $window, TweenMax) {
+elementMinimapApp.directive('cmsMinimapScale', function(EventWatcher, $window, TweenMax) {
 
   return {
     link: function postLink(scope, element, attrs) {

@@ -1,4 +1,4 @@
-cmsApp.factory('Field', function($http, FIELD_GET, FIELD_TRANSLATION, FIELD_SAVE, Locale) {
+elementApp.factory('Field', function($http, FIELD_GET, FIELD_TRANSLATION, FIELD_SAVE, Locale) {
 
   return {
     get: function(key) {

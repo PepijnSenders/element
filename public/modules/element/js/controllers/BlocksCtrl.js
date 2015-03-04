@@ -1,4 +1,4 @@
-cmsApp.controller('BlocksCtrl', function(Blocks, $scope) {
+elementApp.controller('BlocksCtrl', function(Blocks, $scope) {
 
   $scope.blocks = Blocks.container;
 

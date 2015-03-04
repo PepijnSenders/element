@@ -1,4 +1,4 @@
-cmsApp.factory('Locale', function() {
+elementApp.factory('Locale', function() {
 
   return {
     language: 'nl',

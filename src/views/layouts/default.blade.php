@@ -15,7 +15,7 @@
   <script type="text/javascript" src="{{ asset('vendor/modernizr/modernizr.js') }}"></script>
   @yield('element::header.scripts')
 </head>
-<body ng-app="cmsApp">
+<body ng-app="elementApp">
 
   @if (Auth::element2cms()->check())
   @include('element::partials.header')
@@ -28,6 +28,7 @@
   <script type="text/javascript" src="{{ Pep\Element\Support\AssetHelper::url('dist/element.bundle.js') }}"></script>
   <script type="text/javascript" src="{{ Pep\Element\Support\AssetHelper::url('dist/element.js') }}"></script>
   <script type="text/javascript" src="{{ Pep\Element\Support\AssetHelper::url('dist/element/minimap.js') }}"></script>
+  <script type="text/javascript" src="{{ Pep\Element\Support\AssetHelper::url('dist/element/manager.js') }}"></script>
   <script type="text/javascript">
   </script>
   @yield('element::footer.scripts')

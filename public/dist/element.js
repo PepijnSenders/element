@@ -1,7 +1,7 @@
 "use strict";
-var elementApp = angular.module('elementApp', ["elementCmsMinimapApp"]);
-cmsApp.constant('MODULE_BASE', 'modules/cms/views');
-cmsApp.run(["$rootScope", function($rootScope) {
+var elementApp = angular.module('elementApp', ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp"]);
+elementApp.constant('MODULE_BASE', 'modules/cms/views');
+elementApp.run(["$rootScope", function($rootScope) {
   var events = ['header.expand'];
   events.forEach(function(event) {
     $rootScope.$on(event, function(e, data) {
@@ -9,7 +9,7 @@ cmsApp.run(["$rootScope", function($rootScope) {
     });
   });
 }]);
-cmsApp.controller('BlocksCtrl', ["Blocks", "$scope", function(Blocks, $scope) {
+elementApp.controller('BlocksCtrl', ["Blocks", "$scope", function(Blocks, $scope) {
   $scope.blocks = Blocks.container;
   $scope.close = function(block) {
     for (var index in Blocks.container) {
@@ -20,14 +20,14 @@ cmsApp.controller('BlocksCtrl', ["Blocks", "$scope", function(Blocks, $scope) {
     }
   };
 }]);
-cmsApp.controller('EditCtrl', ["$scope", "Editable", function($scope, Editable) {
+elementApp.controller('EditCtrl', ["$scope", "Editable", function($scope, Editable) {
   $scope.getForBlock = function(block) {
     Editable.getForBlock(block).then(function(editables) {
       $scope.editables = editables;
     });
   };
 }]);
-cmsApp.controller('InputCtrl', ["$scope", "Field", "History", "Locale", "$q", function($scope, Field, History, Locale, $q) {
+elementApp.controller('InputCtrl', ["$scope", "Field", "History", "Locale", "$q", function($scope, Field, History, Locale, $q) {
   this.init = function() {
     $scope.disabled = true;
     return Field.translation($scope.global.key, Locale.language, Locale.region).then(function(translation) {
@@ -72,7 +72,7 @@ cmsApp.controller('InputCtrl', ["$scope", "Field", "History", "Locale", "$q", fu
     });
   };
 }]);
-cmsApp.factory('Blocks', function() {
+elementApp.factory('Blocks', function() {
   return {
     container: {},
     timestamp: Date.now(),
@@ -89,7 +89,7 @@ cmsApp.factory('Blocks', function() {
     }
   };
 });
-cmsApp.factory('Editable', ["$http", "EDITABLE_GET_FOR_BLOCK", function($http, EDITABLE_GET_FOR_BLOCK) {
+elementApp.factory('Editable', ["$http", "EDITABLE_GET_FOR_BLOCK", function($http, EDITABLE_GET_FOR_BLOCK) {
   return {getForBlock: function(block) {
       return $http({
         method: 'GET',
@@ -100,7 +100,7 @@ cmsApp.factory('Editable', ["$http", "EDITABLE_GET_FOR_BLOCK", function($http, E
       });
     }};
 }]);
-cmsApp.factory('Field', ["$http", "FIELD_GET", "FIELD_TRANSLATION", "FIELD_SAVE", "Locale", function($http, FIELD_GET, FIELD_TRANSLATION, FIELD_SAVE, Locale) {
+elementApp.factory('Field', ["$http", "FIELD_GET", "FIELD_TRANSLATION", "FIELD_SAVE", "Locale", function($http, FIELD_GET, FIELD_TRANSLATION, FIELD_SAVE, Locale) {
   return {
     get: function(key) {
       return $http({
@@ -138,7 +138,7 @@ cmsApp.factory('Field', ["$http", "FIELD_GET", "FIELD_TRANSLATION", "FIELD_SAVE"
     }
   };
 }]);
-cmsApp.factory('History', ["$http", "HISTORY_GET_KEY", function($http, HISTORY_GET_KEY) {
+elementApp.factory('History', ["$http", "HISTORY_GET_KEY", function($http, HISTORY_GET_KEY) {
   return {getByKey: function(key) {
       var page = arguments[1] !== (void 0) ? arguments[1] : 1;
       var count = arguments[2] !== (void 0) ? arguments[2] : 10;
@@ -155,10 +155,10 @@ cmsApp.factory('History', ["$http", "HISTORY_GET_KEY", function($http, HISTORY_G
       });
     }};
 }]);
-cmsApp.factory('HoverField', function() {
+elementApp.factory('HoverField', function() {
   return {currentIdentifier: ''};
 });
-cmsApp.factory('Input', function() {
+elementApp.factory('Input', function() {
   return function postLink(scope, element, attrs, ctrl) {
     ctrl.init();
     scope.history = function() {
@@ -172,7 +172,7 @@ cmsApp.factory('Input', function() {
     };
   };
 });
-cmsApp.factory('Locale', function() {
+elementApp.factory('Locale', function() {
   return {
     language: 'nl',
     region: 'NL',
@@ -181,7 +181,7 @@ cmsApp.factory('Locale', function() {
     }
   };
 });
-cmsApp.directive('cmsInput', ["MODULE_BASE", "Input", function(MODULE_BASE, Input) {
+elementApp.directive('cmsInput', ["MODULE_BASE", "Input", function(MODULE_BASE, Input) {
   return {
     scope: {'global': '=cmsInput'},
     templateUrl: MODULE_BASE + '/cms-input.html',
@@ -189,7 +189,7 @@ cmsApp.directive('cmsInput', ["MODULE_BASE", "Input", function(MODULE_BASE, Inpu
     link: Input
   };
 }]);
-cmsApp.directive('cmsTextarea', ["MODULE_BASE", "Input", function(MODULE_BASE, Input) {
+elementApp.directive('cmsTextarea', ["MODULE_BASE", "Input", function(MODULE_BASE, Input) {
   return {
     scope: {'global': '=cmsTextarea'},
     templateUrl: MODULE_BASE + '/cms-textarea.html',
@@ -197,7 +197,7 @@ cmsApp.directive('cmsTextarea', ["MODULE_BASE", "Input", function(MODULE_BASE, I
     link: Input
   };
 }]);
-cmsApp.directive('cmsField', ["Field", "MODULE_BASE", "HoverField", function(Field, MODULE_BASE, HoverField) {
+elementApp.directive('cmsField', ["Field", "MODULE_BASE", "HoverField", function(Field, MODULE_BASE, HoverField) {
   return {
     scope: {global: '=cmsField'},
     templateUrl: MODULE_BASE + '/cms-field.html',
@@ -233,7 +233,7 @@ cmsApp.directive('cmsField', ["Field", "MODULE_BASE", "HoverField", function(Fie
     }
   };
 }]);
-cmsApp.directive('cmsHistory', ["MODULE_BASE", "USER_SHOW", function(MODULE_BASE, USER_SHOW) {
+elementApp.directive('cmsHistory', ["MODULE_BASE", "USER_SHOW", function(MODULE_BASE, USER_SHOW) {
   return {
     scope: {'histories': '=cmsHistory'},
     templateUrl: MODULE_BASE + '/cms-history.html',
@@ -252,7 +252,7 @@ cmsApp.directive('cmsHistory', ["MODULE_BASE", "USER_SHOW", function(MODULE_BASE
     }
   };
 }]);
-cmsApp.filter('title', function() {
+elementApp.filter('title', function() {
   return function(input) {
     var pieces = input.split('.');
     input = pieces[pieces.length - 1];

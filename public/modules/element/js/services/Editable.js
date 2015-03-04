@@ -1,4 +1,4 @@
-cmsApp.factory('Editable', function($http, EDITABLE_GET_FOR_BLOCK) {
+elementApp.factory('Editable', function($http, EDITABLE_GET_FOR_BLOCK) {
 
   return {
     getForBlock: function(block) {

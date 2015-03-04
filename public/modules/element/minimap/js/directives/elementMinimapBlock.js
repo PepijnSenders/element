@@ -1,4 +1,4 @@
-cmsMinimapApp.directive('block', function(Blocks) {
+elementMinimapApp.directive('block', function(Blocks) {
 
   return {
     scope: {

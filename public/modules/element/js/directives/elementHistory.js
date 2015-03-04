@@ -1,4 +1,4 @@
-cmsApp.directive('cmsHistory', function(MODULE_BASE, USER_SHOW) {
+elementApp.directive('cmsHistory', function(MODULE_BASE, USER_SHOW) {
 
   return {
     scope: {

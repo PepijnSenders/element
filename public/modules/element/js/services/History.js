@@ -1,4 +1,4 @@
-cmsApp.factory('History', function($http, HISTORY_GET_KEY) {
+elementApp.factory('History', function($http, HISTORY_GET_KEY) {
 
   return {
     getByKey: function(key, page = 1, count = 10) {

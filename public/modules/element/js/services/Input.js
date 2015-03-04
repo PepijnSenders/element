@@ -1,4 +1,4 @@
-cmsApp.factory('Input', function() {
+elementApp.factory('Input', function() {
 
   return function postLink(scope, element, attrs, ctrl) {
     ctrl.init();

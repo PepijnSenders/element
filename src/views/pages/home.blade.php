@@ -1,7 +1,7 @@
 @extends('element::layouts.default')
 
 @section('element::title')
-Login
+Welcome
 @stop
 
 @section('element::content')

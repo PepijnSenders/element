@@ -1,4 +1,4 @@
-cmsApp.directive('cmsField', function(Field, MODULE_BASE, HoverField) {
+elementApp.directive('cmsField', function(Field, MODULE_BASE, HoverField) {
 
   return {
     scope: {

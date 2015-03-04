@@ -1,6 +1,6 @@
-cmsApp.constant('MODULE_BASE', 'modules/cms/views');
+elementApp.constant('MODULE_BASE', 'modules/cms/views');
 
-cmsApp.run(function($rootScope) {
+elementApp.run(function($rootScope) {
 
   var events = [
     'header.expand'

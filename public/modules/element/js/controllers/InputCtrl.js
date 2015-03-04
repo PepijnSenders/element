@@ -1,4 +1,4 @@
-cmsApp.controller('InputCtrl', function($scope, Field, History, Locale, $q) {
+elementApp.controller('InputCtrl', function($scope, Field, History, Locale, $q) {
 
   this.init = function() {
     $scope.disabled = true;

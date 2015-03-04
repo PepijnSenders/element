@@ -1,6 +1,6 @@
 "use strict";
-var elementMinimapApp = angular.module('elementMinimapApp', ["eventwatcherApp", "tweenmaxApp"]);
-cmsMinimapApp.directive('block', ["Blocks", function(Blocks) {
+var elementMinimapApp = angular.module('elementMinimapApp', []);
+elementMinimapApp.directive('block', ["Blocks", function(Blocks) {
   return {
     scope: {'id': '@block'},
     link: function postLink(scope, element, attrs) {
@@ -28,7 +28,7 @@ cmsMinimapApp.directive('block', ["Blocks", function(Blocks) {
     }
   };
 }]);
-cmsMinimapApp.directive('cmsMinimapHighlight', ["HoverField", function(HoverField) {
+elementMinimapApp.directive('cmsMinimapHighlight', ["HoverField", function(HoverField) {
   return {link: function postLink(scope, element, attrs) {
       var elementFinder = function(identifier) {
         var found = element.find(identifier);
@@ -56,7 +56,7 @@ cmsMinimapApp.directive('cmsMinimapHighlight', ["HoverField", function(HoverFiel
       });
     }};
 }]);
-cmsMinimapApp.directive('cmsMinimapScale', ["EventWatcher", "$window", "TweenMax", function(EventWatcher, $window, TweenMax) {
+elementMinimapApp.directive('cmsMinimapScale', ["EventWatcher", "$window", "TweenMax", function(EventWatcher, $window, TweenMax) {
   return {link: function postLink(scope, element, attrs) {
       EventWatcher.addEvent('resize');
       scope.$watch(function() {

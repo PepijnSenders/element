@@ -1,4 +1,4 @@
-cmsApp.directive('cmsInput', function(MODULE_BASE, Input) {
+elementApp.directive('cmsInput', function(MODULE_BASE, Input) {
 
   return {
     scope: {

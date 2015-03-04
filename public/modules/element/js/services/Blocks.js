@@ -1,4 +1,4 @@
-cmsApp.factory('Blocks', function() {
+elementApp.factory('Blocks', function() {
 
   return {
     container: {},

@@ -1,4 +1,4 @@
-cmsMinimapApp.directive('cmsMinimapHighlight', function(HoverField) {
+elementMinimapApp.directive('cmsMinimapHighlight', function(HoverField) {
 
   return {
     link: function postLink(scope, element, attrs) {

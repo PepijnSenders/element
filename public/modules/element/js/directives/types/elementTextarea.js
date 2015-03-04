@@ -1,4 +1,4 @@
-cmsApp.directive('cmsTextarea', function(MODULE_BASE, Input) {
+elementApp.directive('cmsTextarea', function(MODULE_BASE, Input) {
 
   return {
     scope: {

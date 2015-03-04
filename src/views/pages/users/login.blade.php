@@ -5,18 +5,13 @@ Login
 @stop
 
 @section('element::content')
-<legend>
-  <h1>Welcome, to the {{ Config::get('element::cms.title') }}.</h1>
-  <p>Please login to gain entry</p>
-</legend>
-
-@if (isset($messages))
-  @foreach ($messages as $message)
-  <p class="text-danger">{{ $message[0] }}</p>
-  @endforeach
-@endif
 <form class="form-horizontal" method="POST" action="{{ URL::route('element::api.users.login') }}">
   <input type="hidden" name="_token" value="{{ csrf_token(); }}">
+  <legend>
+    <h1>Welcome, to the {{ Config::get('element::cms.title') }}.</h1>
+    <p>Please login to gain entry</p>
+  </legend>
+  @include('element::partials.messages', ['messages' => $messages])
   <div class="form-group">
     <label class="col-sm-2 control-label" for="email">
       Email:

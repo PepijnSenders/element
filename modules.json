@@ -4,17 +4,26 @@
       "public/vendor/traceur/traceur.js",
       "public/vendor/sugar/release/sugar-full.development.js",
       "public/vendor/greensock/src/uncompressed/TweenMax.js",
+      "public/vendor/angular/angular.js",
       "public/vendor/angular-tweenmax/dist/angular-tweenmax.js",
-      "public/vendor/angular-eventwatcher/dist/angular-eventwatcher.js"
+      "public/vendor/angular-eventwatcher/dist/angular-eventwatcher.js",
+      "public/vendor/jquery/dist/jquery.js",
+      "public/vendor/bootstrap-sass-official/assets/javascripts/bootstrap.js",
+      "public/vendor/typeahead.js/dist/typeahead.jquery.js"
     ],
     "app": {
-      "deps": ["elementMinimapApp"]
+      "deps": ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp"]
     },
     "sass": true
   },
   "element/minimap": {
     "app": {
-      "deps": ["eventwatcherApp", "tweenmaxApp"]
+      "deps": []
+    }
+  },
+  "element/manager": {
+    "app": {
+      "deps": []
     }
   }
 }
