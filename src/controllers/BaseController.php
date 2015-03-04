@@ -1,6 +1,6 @@
 <?php
 
-namespace Pep\Element;
+namespace Pep\Element\Controllers;
 
 use Illuminate\Routing\Controller;
 

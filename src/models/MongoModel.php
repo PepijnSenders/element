@@ -14,10 +14,14 @@ abstract class MongoModel extends Moloquent {
   public function validate($extraRules = []) {
     $rules = array_merge($this->rules, $extraRules);
 
+    foreach ($this->attributes as $key => $value) {
+      $properties[$key] = $this->$key;
+    }
+
     $validator = Validator::make(
-      $this->getMutatedArray(),
+      $properties,
       $rules,
-      Config::get('element-cms::validation.messages', [])
+      Config::get('element::validation.messages', [])
     );
 
     if ($validator->fails()) {

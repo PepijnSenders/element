@@ -15,18 +15,14 @@ Login
   <p class="text-danger">{{ $message[0] }}</p>
   @endforeach
 @endif
-<form class="form-horizontal" method="POST" action="@route('Cms', 'api.users.login')">
+<form class="form-horizontal" method="POST" action="{{ URL::route('element::api.users.login') }}">
   <input type="hidden" name="_token" value="{{ csrf_token(); }}">
   <div class="form-group">
     <label class="col-sm-2 control-label" for="email">
       Email:
     </label>
     <div class="col-sm-8">
-      <input id="email" name="email" type="text" class="form-control"
-      @if (Pep\ServerCheck::isLocal() || Pep\ServerCheck::isStaging())
-        value="honor@hihonor.com"
-      @endif
-        >
+      <input id="email" name="email" type="text" class="form-control">
     </div>
   </div>
   <div class="form-group">
@@ -34,11 +30,7 @@ Login
       Password:
     </label>
     <div class="col-sm-8">
-      <input id="password" name="password" type="password" class="form-control"
-      @if (Pep\ServerCheck::isLocal() || Pep\ServerCheck::isStaging())
-        value="92$0wIQViDoZa*zH2HsL"
-      @endif
-        >
+      <input id="password" name="password" type="password" class="form-control">
     </div>
   </div>
   <div class="form-group col-sm-2">

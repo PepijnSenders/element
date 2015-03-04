@@ -2,10 +2,14 @@
 
 namespace Pep\Element\Models\User;
 
-use Pep\Element\Models\MongoModel;
+use Pep\Element\Models\User\User;
 
-class CmsUser extends MongoModel {
+class CmsUser extends User {
 
-  protected $collection = 'element::cms_users';
+  protected $collection = 'element2user_cms_users';
+  protected $rules = [
+    'email' => 'email|required|unique:element2user_cms_users',
+    'password' => 'required',
+  ];
 
 }

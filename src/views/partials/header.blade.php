@@ -16,7 +16,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="@route('Cms', 'api.users.logout')">Logout</a>
+          <a href="{{ URL::route('element::api.users.logout') }}">Logout</a>
         </li>
       </ul>
     </div>
