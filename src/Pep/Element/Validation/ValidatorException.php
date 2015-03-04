@@ -2,9 +2,9 @@
 
 namespace Pep\Element\Validation;
 
-use Exception;
+use Pep\Element\ElementException;
 
-class ValidatorException extends Exception {
+class ValidatorException extends ElementException {
 
   /**
    * @var Illuminate\Support\MessageBag $messageBag

@@ -6,7 +6,7 @@ Login
 
 @section('element::content')
 <legend>
-  <h1>Welcome, to the Honor CMS.</h1>
+  <h1>Welcome, to the {{ Config::get('element::cms.title') }}.</h1>
   <p>Please login to gain entry</p>
 </legend>
 
