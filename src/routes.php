@@ -8,9 +8,9 @@ Route::group([
 
     Route::group(['prefix' => 'pages', 'namespace' => 'Site'], function() {
 
-      Route::get('/home', ['as' => 'element::pages.home', 'uses' => function() {
-        echo 'home';
-      }]);
+      Route::group(['before' => 'element::cms'], function() {
+        Route::get('/home', ['as' => 'element::pages.home', 'uses' => 'PagesController@home']);
+      });
 
       Route::group(['prefix' => 'users', 'namespace' => 'User'], function() {
         Route::get('/login', ['as' => 'element::pages.users.login', 'uses' => 'PagesController@login']);

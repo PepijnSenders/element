@@ -17,6 +17,7 @@ class CreateCommand extends ElementCommand {
 
     $this->info('Provide admin credentials.');
     $user->email = $this->ask('Admin email:');
+    $user->name = $this->ask('Amin name:');
     $user->password = Hash::make($this->secret('Admin password:'));
 
     try {

@@ -21,6 +21,7 @@ class UsersController extends BaseController {
     try {
       $user->validate([
         'email' => 'required|email',
+        'name' => '',
       ]);
     } catch (ValidatorException $e) {
       return View::make('element::pages.users.login')

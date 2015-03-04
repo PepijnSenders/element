@@ -9,7 +9,7 @@ App::before(function() {
 
 });
 
-Route::filter('admin', function() {
+Route::filter('element::cms', function() {
   if (!Auth::element2cms()->check()) {
     return Redirect::route('element::pages.users.login');
   }
