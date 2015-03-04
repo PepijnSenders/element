@@ -3,6 +3,7 @@
 namespace Pep\Element;
 
 use Illuminate\Support\ServiceProvider;
+use Pep\Element\Commands\User\CreateCommand;
 
 class ElementServiceProvider extends ServiceProvider {
 
@@ -15,8 +16,12 @@ class ElementServiceProvider extends ServiceProvider {
 
   public function register() {
     $this->app->bind('element::user:create', function($app) {
-      return Pep\Element\Commands\User\CreateCommand;
+      return new CreateCommand;
     });
+
+    $this->commands([
+      'element::user:create',
+    ]);
   }
 
 }
