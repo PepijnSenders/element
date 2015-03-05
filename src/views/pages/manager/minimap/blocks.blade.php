@@ -6,8 +6,8 @@ Manager &mdash; Minimap &mdash; Blocks
 
 @section('element::content')
 <div class="row">
-  @include('element::partials.minimap', ['minimap' => $minimap])
-  <div class="col-sm-4">
+  @include('element::partials.minimap', ['minimap' => $minimap, 'scale' => 3 / 12])
+  <div class="col-sm-9 col-sm-offset-3">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -19,8 +19,8 @@ Manager &mdash; Minimap &mdash; Blocks
       <tbody>
         @foreach ($minimap->elementIdentifiers as $elementIdentifier)
         <tr>
-          <td>
-            {{ $elementIdentifier }}
+          <td element-minimap-trigger-hover="'#{{ $elementIdentifier }}'">
+            #{{ $elementIdentifier }}
           </td>
         </tr>
         @endforeach

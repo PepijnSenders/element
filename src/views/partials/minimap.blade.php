@@ -1,5 +1,5 @@
 <div class="minimap">
-  <div cms-minimap-highlight cms-minimap-scale class="minimap__scale" id="{{ $minimap->identifier }}" ng-cloak>
+  <div element-minimap-highlight element-minimap-scale="{{ isset($scale) ? $scale : 1 }}" class="minimap__scale" id="{{ $minimap->identifier }}" ng-cloak>
     {{ $minimap->container }}
   </div>
 </div>

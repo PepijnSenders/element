@@ -1,30 +1,16 @@
-elementMinimapApp.directive('cmsMinimapHighlight', function(HoverField) {
+elementMinimapApp.directive('elementMinimapHighlight', function(HoverField, ElementFinder) {
 
   return {
     link: function postLink(scope, element, attrs) {
-      var elementFinder = function(identifier) {
-        var found = element.find(identifier);
-        while (!found.length && typeof identifier === 'string') {
-          var pieces = identifier.split(' ');
-          if (typeof pieces === 'object') {
-            pieces.pop();
-            identifier = pieces.join(' ');
-            found = element.find(identifier);
-          }
-        }
-        return found;
-      };
-
-      var lastElement;
       scope.$watch(function() {
         return HoverField.currentIdentifier;
       }, function(newValue) {
+        $(element).find('.minimap__highlight').removeClass('minimap__highlight');
+
         if (newValue) {
-          if (lastElement) {
-            lastElement.removeClass('minimap__highlight');
-          }
-          lastElement = elementFinder(newValue);
-          lastElement.addClass('minimap__highlight');
+          var found = ElementFinder.get(element, newValue);
+
+          found.addClass('minimap__highlight');
         }
       });
     }

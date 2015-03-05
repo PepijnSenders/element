@@ -1,5 +1,21 @@
 "use strict";
 var elementMinimapApp = angular.module('elementMinimapApp', []);
+elementMinimapApp.factory('ElementFinder', function() {
+  return {get: function(element, identifier) {
+      identifier = identifier.compact();
+      var found = $(element).find(identifier);
+      while (!found.length && identifier.length) {
+        var pieces = identifier.split(' ');
+        pieces.pop();
+        identifier = pieces.join(' ').compact();
+        found = $(element).find(identifier);
+      }
+      while (!found.is(':visible') && element.has(found).length) {
+        found = found.parent();
+      }
+      return found;
+    }};
+});
 elementMinimapApp.directive('block', ["Blocks", function(Blocks) {
   return {
     scope: {'id': '@block'},
@@ -28,42 +44,29 @@ elementMinimapApp.directive('block', ["Blocks", function(Blocks) {
     }
   };
 }]);
-elementMinimapApp.directive('cmsMinimapHighlight', ["HoverField", function(HoverField) {
+elementMinimapApp.directive('elementMinimapHighlight', ["HoverField", "ElementFinder", function(HoverField, ElementFinder) {
   return {link: function postLink(scope, element, attrs) {
-      var elementFinder = function(identifier) {
-        var found = element.find(identifier);
-        while (!found.length && typeof identifier === 'string') {
-          var pieces = identifier.split(' ');
-          if (typeof pieces === 'object') {
-            pieces.pop();
-            identifier = pieces.join(' ');
-            found = element.find(identifier);
-          }
-        }
-        return found;
-      };
-      var lastElement;
       scope.$watch(function() {
         return HoverField.currentIdentifier;
       }, function(newValue) {
+        $(element).find('.minimap__highlight').removeClass('minimap__highlight');
         if (newValue) {
-          if (lastElement) {
-            lastElement.removeClass('minimap__highlight');
-          }
-          lastElement = elementFinder(newValue);
-          lastElement.addClass('minimap__highlight');
+          var found = ElementFinder.get(element, newValue);
+          found.addClass('minimap__highlight');
         }
       });
     }};
 }]);
-elementMinimapApp.directive('cmsMinimapScale', ["EventWatcher", "$window", "TweenMax", function(EventWatcher, $window, TweenMax) {
-  return {link: function postLink(scope, element, attrs) {
+elementMinimapApp.directive('elementMinimapScale', ["EventWatcher", "$window", "TweenMax", function(EventWatcher, $window, TweenMax) {
+  return {
+    scope: {'scale': '=elementMinimapScale'},
+    link: function postLink(scope, element, attrs) {
       EventWatcher.addEvent('resize');
       scope.$watch(function() {
         return EventWatcher.events['resize'].timeStamp;
       }, function() {
-        TweenMax.set(element.find('#container'), {
-          scale: .25 * $window.innerWidth / $window.innerWidth,
+        TweenMax.set($(element).find('#container'), {
+          scale: scope.scale || .25,
           force3D: true
         });
         TweenMax.set(element[0].parentNode, {
@@ -71,7 +74,24 @@ elementMinimapApp.directive('cmsMinimapScale', ["EventWatcher", "$window", "Twee
           position: 'fixed'
         });
       });
-    }};
+    }
+  };
+}]);
+elementMinimapApp.directive('elementMinimapTriggerHover', ["HoverField", function(HoverField) {
+  return {
+    scope: {'trigger': '=elementMinimapTriggerHover'},
+    link: function postLink(scope, element, attrs) {
+      $(element).hover(function() {
+        scope.$apply(function() {
+          HoverField.currentIdentifier = scope.trigger;
+        });
+      }, function() {
+        scope.$apply(function() {
+          HoverField.currentIdentifier = '';
+        });
+      });
+    }
+  };
 }]);
 
 //# sourceMappingURL=../element/minimap.js.map

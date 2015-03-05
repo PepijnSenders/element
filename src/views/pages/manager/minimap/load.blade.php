@@ -9,7 +9,9 @@ Manager &mdash; Minimap &mdash; Load
   <legend>
       <h1>Select route</h1>
   </legend>
-  @include('element::partials.messages', ['messages' => $messages])
+  @if (isset($messages))
+    @include('element::partials.messages', ['messages' => $messages])
+  @endif
   <div class="form-group">
     <div class="col-sm-7">
       <input name="route" element-manager-routes type="text" class="form-control" placeholder="Enter route">

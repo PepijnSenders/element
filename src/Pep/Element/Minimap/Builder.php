@@ -99,7 +99,9 @@ class Builder {
       }
     }
 
-    $style = str_replace('..', '.', implode('', $stylesheets));
+    $style = implode('', $stylesheets);
+    self::cleanCss($style);
+
     $containeredStyle = "#{$identifier} { $style }";
 
     $compiler = new ScssCompiler;
@@ -109,6 +111,11 @@ class Builder {
     self::saveCache('style', $page, $css);
 
     return $css;
+  }
+
+  public static function cleanCss(&$css) {
+    $css = preg_replace('/(\@font\-face\s\{[A-Za-z0-9\s\:\'\.\/\?\#\-\;\(\)\_\=\&\,]*\})/', '', $css);
+    $css = preg_replace('/(\@import url\([A-Za-z0-9\.\/\-\_\'\"]*\)\;)/', '', $css);
   }
 
   public static function removeAttributes(DOMNode &$node, $attributes) {

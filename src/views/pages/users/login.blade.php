@@ -11,7 +11,9 @@ Login
     <h1>Welcome, to the {{ Config::get('element::cms.title') }}.</h1>
     <p>Please login to gain entry</p>
   </legend>
-  @include('element::partials.messages', ['messages' => $messages])
+  @if (isset($messages))
+    @include('element::partials.messages', ['messages' => $messages])
+  @endif
   <div class="form-group">
     <label class="col-sm-2 control-label" for="email">
       Email:
