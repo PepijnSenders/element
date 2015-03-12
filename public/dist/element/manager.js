@@ -1,5 +1,17 @@
 "use strict";
 var elementManagerApp = angular.module('elementManagerApp', []);
+elementManagerApp.controller('ManagerCustomTextCtrl', ["$scope", "UniqId", "PAGE", function($scope, UniqId, PAGE) {
+  $scope.customs = [{
+    identifier: UniqId.generate((PAGE + "-")),
+    text: ''
+  }];
+  $scope.addCustom = function() {
+    $scope.customs.push({
+      identifier: UniqId.generate((PAGE + "-")),
+      text: ''
+    });
+  };
+}]);
 elementManagerApp.directive('elementManagerRoutes', ["ROUTES", function(ROUTES) {
   return {link: function postLink(scope, element, attrs) {
       $(element).typeahead({

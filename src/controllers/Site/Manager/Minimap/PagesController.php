@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Pep\Element\Models\Manager\Page;
 use Pep\Element\Minimap\Minimap;
+use Pep\Element\Minimap\MinimapException;
+use Pep\Element\Models\Data\Text;
 
 class PagesController extends BaseController {
 
@@ -21,14 +23,24 @@ class PagesController extends BaseController {
   }
 
   public function blocks(Page $page) {
-    $minimap = new Minimap($page);
+    try {
+      $minimap = new Minimap($page);
+    } catch (MinimapException $e) {
+      return Redirect::route('element::pages.manager.minimap.load')
+        ->with('messages', [
+          [$e->getMessage()],
+        ]);
+    }
 
     return View::make('element::pages.manager.minimap.blocks')
       ->with('minimap', $minimap);
   }
 
   public function finalize(Page $page) {
-    return View::make('element::pages.manager.minimap.finalize');
+
+
+    return View::make('element::pages.manager.minimap.finalize')
+      ->with('page', $page);
   }
 
 }

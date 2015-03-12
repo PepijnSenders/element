@@ -4,7 +4,9 @@ namespace Pep\Element\Controllers\Api\Manager;
 
 use Pep\Element\Controllers\BaseController;
 use Pep\Element\Minimap\Minimap;
+use Pep\Element\Minimap\MinimapException;
 use Pep\Element\Models\Manager\Page;
+use Pep\Element\Models\Data\Text;
 use Illuminate\Support\Facades\Input;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
@@ -57,6 +59,37 @@ class MinimapsController extends BaseController {
     $page->identifiers = explode(', ', Input::get('identifiers'));
 
     $page->save();
+
+    try {
+      $minimap = new Minimap($page);
+    } catch (MinimapException $e) {
+      return Redirect::route('element::pages.manager.minimap.finalize')
+        ->with('messages', [
+          [$e->getMessage()],
+        ]);
+    }
+
+    $translateables = $minimap->loadTranslateables();
+
+    foreach ($translateables as $identifier => $textNodes) {
+      foreach ($textNodes as $textNode) {
+        $text = Text::where('default', $textNode)
+          ->first();
+
+        if (!$text) {
+          $text = new Text;
+
+          $text->default = $textNode;
+          $text->blocks = ["$page->name $identifier"];
+        } else if (!array_key_exists($page->name, $text->blocks)) {
+          $blocks = $text->blocks;
+          $blocks[] = "$page->name $identifier";
+          $text->blocks = $blocks;
+        }
+
+        $text->save();
+      }
+    }
 
     return Redirect::route('element::pages.manager.minimap.finalize', [
       'page' => $page->name,

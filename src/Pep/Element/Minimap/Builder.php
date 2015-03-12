@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Symfony\Component\DomCrawler\Crawler;
 use DOMDocument;
@@ -24,8 +25,13 @@ class Builder {
       return $cached;
     }
 
-    $html = View::make($page->view)
-      ->render();
+    try {
+      $html = View::make($page->view)
+        ->with('no-translate', true)
+        ->render();
+    } catch (ErrorException $e) {
+      throw new MinimapException('Error while rendering view, please solve the following error: "' . $e->getMessage() . '"');
+    }
 
     self::saveCache('html', $page, $html);
 
@@ -69,11 +75,14 @@ class Builder {
     }
 
     self::addIds($body);
+
     self::removeTags($body, 'script');
     self::removeTags($body, 'link');
 
     $document = self::removeAttributes($body, ['ng-app', 'ng-if', 'ng-bind', 'ng-controller', 'ng-repeat', 'ng-switch', 'ng-switch-when', 'ng-switch-default']);
     $html = $document->saveHTML();
+
+    self::removeIds($body);
 
     self::saveCache('container', $page, $html);
 
@@ -181,6 +190,20 @@ class Builder {
 
         if ($childNode->childNodes && $childNode->childNodes->length > 0) {
           self::addIds($childNode);
+        }
+      }
+    }
+  }
+
+  public static function removeIds(DOMNode &$node) {
+    foreach ($node->childNodes as $childNode) {
+      if (is_a($childNode, 'DOMElement')) {
+        if (Str::startsWith($childNode->getAttribute('id'), 'minimap-')) {
+          $childNode->removeAttribute('id');
+        }
+
+        if ($childNode->childNodes && $childNode->childNodes->length > 0) {
+          self::removeIds($childNode);
         }
       }
     }
