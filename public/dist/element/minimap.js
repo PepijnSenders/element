@@ -1,12 +1,26 @@
 "use strict";
 var elementMinimapApp = angular.module('elementMinimapApp', []);
-elementMinimapApp.controller('MinimapBlocksCtrl', ["$scope", "SweetAlert", function($scope, SweetAlert) {
+elementMinimapApp.controller('MinimapBlocksCtrl', ["$scope", "SweetAlert", "ElementFinder", "Identify", function($scope, SweetAlert, ElementFinder, Identify) {
   $scope.blocks = {identifiers: []};
   $scope.addIdentifier = function(identifier) {
     if (!!~$scope.blocks.identifiers.indexOf(identifier)) {
       SweetAlert.swal('You cannot add one block twice.');
     } else {
       $scope.blocks.identifiers.push(identifier);
+    }
+  };
+  $scope.$watch('blocks.identifiers.length', function() {
+    $scope.blocks.joined = $scope.blocks.identifiers.join(', ');
+  });
+  $scope.search = function(identifier) {
+    var container = $('#blocks-minimap');
+    var found = ElementFinder.get(container, identifier);
+    if (found.length > 1) {
+      SweetAlert.swal('More than one element with that identifier, please be more specific.');
+    } else if (found.length === 1) {
+      $scope.addIdentifier(Identify.element(found, container.find('.minimap__scale')));
+    } else {
+      SweetAlert.swal('Cannot find element.');
     }
   };
 }]);
@@ -24,6 +38,29 @@ elementMinimapApp.factory('ElementFinder', function() {
         found = found.parent();
       }
       return found;
+    }};
+});
+elementMinimapApp.factory('Identify', function() {
+  return {element: function(element, container) {
+      if (!(element instanceof $)) {
+        element = $(element);
+      }
+      var id = element.attr('id');
+      if (id && !id.startsWith('minimap-')) {
+        return '#' + id;
+      } else {
+        var identifier = '';
+        while (element.length && container.has(element).length) {
+          var id = element.attr('id');
+          if (id && !id.startsWith('minimap-')) {
+            identifier = '#' + id + ' ' + identifier;
+          } else if (element[0].className) {
+            identifier = '.' + element[0].className.split(' ').join('.') + ' ' + identifier;
+          }
+          element = element.parent();
+        }
+        return identifier;
+      }
     }};
 });
 elementMinimapApp.directive('block', ["Blocks", function(Blocks) {
