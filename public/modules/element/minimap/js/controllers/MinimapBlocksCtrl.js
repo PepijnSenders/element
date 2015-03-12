@@ -1,12 +1,15 @@
-elementMinimapApp.controller('MinimapBlocksCtrl', function($scope) {
+elementMinimapApp.controller('MinimapBlocksCtrl', function($scope, SweetAlert) {
 
   $scope.blocks = {
     identifiers: []
   };
 
   $scope.addIdentifier = function(identifier) {
-    $scope.blocks.identifiers.push(identifier);
-    console.log($scope.blocks);
+    if (!!~$scope.blocks.identifiers.indexOf(identifier)) {
+      SweetAlert.swal('You cannot add one block twice.')
+    } else {
+      $scope.blocks.identifiers.push(identifier);
+    }
   };
 
 });

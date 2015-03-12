@@ -17,7 +17,7 @@ Manager &mdash; Minimap &mdash; Blocks
         <div class="form-group">
           <label class="control-label col-sm-3" for="identifiers">Blocks</label>
           <div class="col-sm-9">
-            <input id="identifiers" type="text" ng-model="blocks.identifiers" class="form-control">
+            <input id="identifiers" type="text" ng-model="blocks.identifiers.join(', ')" class="form-control">
           </div>
         </div>
       </form>
@@ -31,6 +31,7 @@ Manager &mdash; Minimap &mdash; Blocks
             <th>
               Identifier
             </th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

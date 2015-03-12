@@ -1,5 +1,5 @@
 "use strict";
-var elementApp = angular.module('elementApp', ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp"]);
+var elementApp = angular.module('elementApp', ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp", "oitozero.ngSweetAlert"]);
 elementApp.constant('MODULE_BASE', 'modules/cms/views');
 elementApp.run(["$rootScope", function($rootScope) {
   var events = ['header.expand'];

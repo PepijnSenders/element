@@ -9,10 +9,12 @@
       "public/vendor/angular-eventwatcher/dist/angular-eventwatcher.js",
       "public/vendor/jquery/dist/jquery.js",
       "public/vendor/bootstrap-sass-official/assets/javascripts/bootstrap.js",
-      "public/vendor/typeahead.js/dist/typeahead.jquery.js"
+      "public/vendor/typeahead.js/dist/typeahead.jquery.js",
+      "public/vendor/sweetalert/lib/sweet-alert.js",
+      "public/vendor/angular-sweetalert/SweetAlert.js"
     ],
     "app": {
-      "deps": ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp"]
+      "deps": ["elementMinimapApp", "elementManagerApp", "eventwatcherApp", "tweenmaxApp", "oitozero.ngSweetAlert"]
     },
     "sass": true
   },

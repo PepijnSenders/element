@@ -8,7 +8,7 @@ Route::group(['prefix' => Config::get('element::cms.prefix', 'cms'), 'namespace'
 
   Route::group(['prefix' => 'pages', 'namespace' => 'Site'], function() {
 
-    Route::group(['before' => 'element::cms'], function() {
+    Route::group(['before' => 'element__cms'], function() {
       Route::get('/home', ['as' => 'element::pages.home', 'uses' => 'PagesController@home']);
 
       Route::group(['prefix' => 'manager', 'namespace' => 'Manager'], function() {
@@ -34,7 +34,7 @@ Route::group(['prefix' => Config::get('element::cms.prefix', 'cms'), 'namespace'
       Route::get('/logout', ['as' => 'element::api.users.logout', 'uses' => 'UsersController@logout']);
     });
 
-    Route::group(['before' => 'element::cms', 'prefix' => 'manager', 'namespace' => 'Manager'], function() {
+    Route::group(['before' => 'element__cms', 'prefix' => 'manager', 'namespace' => 'Manager'], function() {
 
       Route::group(['prefix' => 'minimap'], function() {
         Route::post('/load', ['as' => 'element::api.manager.minimap.load', 'uses' => 'MinimapsController@load']);
