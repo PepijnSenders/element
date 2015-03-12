@@ -13,7 +13,12 @@ use ErrorException;
 class MinimapsController extends BaseController {
 
   public function load() {
-    $page = new Page;
+    $page = Page::where('name', Input::get('route'))
+      ->first();
+
+    if (!$page) {
+      $page = new Page;
+    }
 
     $page->name = Input::get('route');
     $action = $page->getLaravelRoute()->getAction();
@@ -35,7 +40,7 @@ class MinimapsController extends BaseController {
       $page->save();
 
       return Redirect::route('element::pages.manager.minimap.blocks', [
-        'route' => $page->name,
+        'page' => $page->name,
       ]);
     } else {
       return Redirect::route('element::pages.manager.minimap.load')
@@ -43,6 +48,19 @@ class MinimapsController extends BaseController {
           ['Route doesn\'t return a view instance.'],
         ]);
     }
+  }
+
+  public function finalize() {
+    $page = Page::where('name', Input::get('page'))
+      ->first();
+
+    $page->identifiers = explode(', ', Input::get('identifiers'));
+
+    $page->save();
+
+    return Redirect::route('element::pages.manager.minimap.finalize', [
+      'page' => $page->name,
+    ]);
   }
 
 }

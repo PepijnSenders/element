@@ -17,7 +17,7 @@ class Minimap {
   public $style;
 
   public function __construct(Page $page) {
-    $this->route = $page;
+    $this->page = $page;
 
     $this->html = Builder::html($page);
     $this->tips = Builder::tips($page);

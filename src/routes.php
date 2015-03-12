@@ -16,6 +16,7 @@ Route::group(['prefix' => Config::get('element::cms.prefix', 'cms'), 'namespace'
         Route::group(['prefix' => 'minimaps', 'namespace' => 'Minimap'], function() {
           Route::get('/load', ['as' => 'element::pages.manager.minimap.load', 'uses' => 'PagesController@load']);
           Route::get('/blocks/{page}', ['as' => 'element::pages.manager.minimap.blocks', 'uses' => 'PagesController@blocks']);
+          Route::get('/finalize/{page}', ['as' => 'element::pages.manager.minimap.finalize', 'uses' => 'PagesController@finalize']);
         });
 
       });
@@ -38,6 +39,7 @@ Route::group(['prefix' => Config::get('element::cms.prefix', 'cms'), 'namespace'
 
       Route::group(['prefix' => 'minimap'], function() {
         Route::post('/load', ['as' => 'element::api.manager.minimap.load', 'uses' => 'MinimapsController@load']);
+        Route::post('/finalize', ['as' => 'element::api.manager.minimap.finalize', 'uses' => 'MinimapsController@finalize']);
       });
 
     });

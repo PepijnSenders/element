@@ -27,4 +27,8 @@ class PagesController extends BaseController {
       ->with('minimap', $minimap);
   }
 
+  public function finalize(Page $page) {
+    return View::make('element::pages.manager.minimap.finalize');
+  }
+
 }
