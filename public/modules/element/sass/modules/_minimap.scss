@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+.minimap--gray {
+  .block {
+    filter: grayscale(100%) !important;
+  }
+}
+
 .minimap__scale {
   overflow: scroll;
 

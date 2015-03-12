@@ -32,8 +32,8 @@ class Builder {
     return $html;
   }
 
-  public static function elementIdentifiers(Page $page) {
-    if ($cached = self::getCached('elementIdentifiers', $page)) {
+  public static function tips(Page $page) {
+    if ($cached = self::getCached('tips', $page)) {
       return $cached;
     }
 
@@ -44,15 +44,15 @@ class Builder {
     $crawler->addContent($html);
     $crawler
       ->filter('section *')
-      ->each(function(Crawler $element) use (&$elementIdentifiers) {
+      ->each(function(Crawler $element) use (&$tips) {
         if ($element->attr('id')) {
-          $elementIdentifiers[] = $element->attr('id');
+          $tips[] = $element->attr('id');
         }
       });
 
-    self::saveCache('elementIdentifiers', $page, $elementIdentifiers);
+    self::saveCache('tips', $page, $tips);
 
-    return $elementIdentifiers;
+    return $tips;
   }
 
   public static function container(Page $page, $identifier) {

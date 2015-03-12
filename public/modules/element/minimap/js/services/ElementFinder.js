@@ -12,7 +12,7 @@ elementMinimapApp.factory('ElementFinder', function() {
         found = $(element).find(identifier);
       }
 
-      while (!found.is(':visible') && element.has(found).length) {
+      while (!found.is(':visible') && $(element).has(found).length) {
         found = found.parent();
       }
 

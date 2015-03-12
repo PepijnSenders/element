@@ -5,11 +5,13 @@ elementMinimapApp.directive('elementMinimapTriggerHover', function(HoverField) {
       'trigger': '=elementMinimapTriggerHover'
     },
     link: function postLink(scope, element, attrs) {
-      $(element).hover(function() {
+      element.on('mouseenter', function() {
         scope.$apply(function() {
           HoverField.currentIdentifier = scope.trigger;
         });
-      }, function() {
+      });
+
+      element.on('mouseleave', function() {
         scope.$apply(function() {
           HoverField.currentIdentifier = '';
         });

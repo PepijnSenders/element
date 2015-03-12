@@ -1,5 +1,12 @@
 "use strict";
 var elementMinimapApp = angular.module('elementMinimapApp', []);
+elementMinimapApp.controller('MinimapBlocksCtrl', ["$scope", function($scope) {
+  $scope.blocks = {identifiers: []};
+  $scope.addIdentifier = function(identifier) {
+    $scope.blocks.identifiers.push(identifier);
+    console.log($scope.blocks);
+  };
+}]);
 elementMinimapApp.factory('ElementFinder', function() {
   return {get: function(element, identifier) {
       identifier = identifier.compact();
@@ -10,7 +17,7 @@ elementMinimapApp.factory('ElementFinder', function() {
         identifier = pieces.join(' ').compact();
         found = $(element).find(identifier);
       }
-      while (!found.is(':visible') && element.has(found).length) {
+      while (!found.is(':visible') && $(element).has(found).length) {
         found = found.parent();
       }
       return found;
@@ -81,11 +88,12 @@ elementMinimapApp.directive('elementMinimapTriggerHover', ["HoverField", functio
   return {
     scope: {'trigger': '=elementMinimapTriggerHover'},
     link: function postLink(scope, element, attrs) {
-      $(element).hover(function() {
+      element.on('mouseenter', function() {
         scope.$apply(function() {
           HoverField.currentIdentifier = scope.trigger;
         });
-      }, function() {
+      });
+      element.on('mouseleave', function() {
         scope.$apply(function() {
           HoverField.currentIdentifier = '';
         });

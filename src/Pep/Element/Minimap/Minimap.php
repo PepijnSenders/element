@@ -11,7 +11,7 @@ class Minimap {
 
   public $page;
   public $html;
-  public $elementIdentifiers;
+  public $tips;
   public $container;
   public $identifier;
   public $style;
@@ -20,7 +20,7 @@ class Minimap {
     $this->route = $page;
 
     $this->html = Builder::html($page);
-    $this->elementIdentifiers = Builder::elementIdentifiers($page);
+    $this->tips = Builder::tips($page);
 
     $this->identifier = self::createIdentifer($page);
     $this->container = Builder::container($page, $this->identifier);

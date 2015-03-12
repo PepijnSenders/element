@@ -4846,6 +4846,10 @@ html, body {
   user-select: none;
   padding: 0; }
 
+.minimap--gray .block {
+  -webkit-filter: grayscale(100%) !important;
+          filter: grayscale(100%) !important; }
+
 .minimap__scale {
   overflow: scroll; }
   .minimap__scale #container {
@@ -4868,8 +4872,6 @@ html, body {
   cursor: pointer;
   opacity: 0.8;
   position: relative;
-  -webkit-filter: grayscale(100%) !important;
-          filter: grayscale(100%) !important;
   transition: all ease-out 500ms; }
   .block:after {
     content: "";

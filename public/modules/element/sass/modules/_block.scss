@@ -2,7 +2,6 @@
   cursor: pointer;
   opacity: 0.8;
   position: relative;
-  filter: grayscale(100%) !important;
 
   @include transition(all ease-out 500ms);
 
