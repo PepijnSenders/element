@@ -10,6 +10,13 @@ Manager &mdash; Minimap &mdash; Blocks
     <div id="blocks-minimap">
       @include('element::partials.minimap', ['minimap' => $minimap, 'scale' => 3 / 12])
     </div>
+    @if (isset($messages) && !!$messages)
+      @foreach ($messages as $message)
+      <p class="text-danger">
+        {{ $message[0] }}
+      </p>
+      @endforeach
+    @endif
     <form action="{{ URL::route('element::api.manager.minimap.finalize') }}" method="POST" class="col-sm-offset-3 col-sm-9">
       <input type="hidden" value="{{ $minimap->page->name }}" name="page">
       <input type="hidden" value="@{{ blocks.joined }}" name="identifiers">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Pep\Element\Minimap\Builder;
 use Symfony\Component\DomCrawler\Crawler;
+use ErrorException;
 
 class Minimap {
 
@@ -48,6 +49,7 @@ class Minimap {
               if (
                 strlen($text) > 0 &&
                 count($element->children()) === 0 &&
+                !preg_match('/no-translate/', $element->attr('class')) &&
                 $text !== '__translated__'
               ) {
                 $translateables[$identifier][] = $text;
@@ -66,11 +68,22 @@ class Minimap {
       $textNodes->flattened[] = $value;
     }, $textNodes);
 
-    foreach ($textNodes->flattened as $textNode) {
-      $contents = str_replace($textNode, '@translate("' . addslashes($textNode) . '")', $contents);
-    }
+    if (!!count($textNodes->flattened)) {
+      foreach ($textNodes->flattened as $textNode) {
+        $contents = str_replace($textNode, '@translate("' . addslashes($textNode) . '")', $contents);
+      }
 
-    File::put($path, $contents);
+      try {
+        File::put($path, $contents);
+      } catch (ErrorException $e) {
+        try {
+          chmod($path, 0750);
+          File::put($path, $contents);
+        } catch (ErrorException $e) {
+          throw new MinimapException('File is not writeable.');
+        }
+      }
+    }
 
     return $translateables;
   }

@@ -7,6 +7,7 @@ Login
 @section('element::content')
 <form class="form-horizontal" method="POST" action="{{ URL::route('element::api.users.login') }}">
   <input type="hidden" name="_token" value="{{ csrf_token(); }}">
+  <input type="hidden" name="url" value="{{ $url }}">
   <legend>
     <h1>Welcome, to the {{ Config::get('element::cms.title') }}.</h1>
     <p>Please login to gain entry</p>

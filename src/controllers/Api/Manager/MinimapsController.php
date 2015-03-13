@@ -62,14 +62,13 @@ class MinimapsController extends BaseController {
 
     try {
       $minimap = new Minimap($page);
+      $translateables = $minimap->loadTranslateables();
     } catch (MinimapException $e) {
-      return Redirect::route('element::pages.manager.minimap.finalize')
+      return Redirect::route('element::pages.manager.minimap.blocks')
         ->with('messages', [
           [$e->getMessage()],
         ]);
     }
-
-    $translateables = $minimap->loadTranslateables();
 
     foreach ($translateables as $identifier => $textNodes) {
       foreach ($textNodes as $textNode) {
@@ -79,6 +78,7 @@ class MinimapsController extends BaseController {
         if (!$text) {
           $text = new Text;
 
+          $text->identifier = $textNode;
           $text->default = $textNode;
           $text->blocks = ["$page->name $identifier"];
         } else if (!array_key_exists($page->name, $text->blocks)) {
@@ -94,6 +94,27 @@ class MinimapsController extends BaseController {
     return Redirect::route('element::pages.manager.minimap.finalize', [
       'page' => $page->name,
     ]);
+  }
+
+  public function finish() {
+    $customs = json_decode(Input::get('customs'));
+
+    array_walk($customs, function($value, $key) use (&$customs) {
+      if (!$value->default) {
+        unset($customs[$key]);
+      }
+    });
+
+    foreach ($customs as $custom) {
+      $text = new Text;
+
+      $text->default = $custom->default;
+      $text->identifier = $custom->identifier;
+
+      $text->save();
+    }
+
+    // return Redirect::route('element::pages.manager.minimap.')
   }
 
 }

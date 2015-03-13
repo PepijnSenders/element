@@ -33,6 +33,7 @@ class PagesController extends BaseController {
     }
 
     return View::make('element::pages.manager.minimap.blocks')
+      ->with('messages', Session::get('messages', []))
       ->with('minimap', $minimap);
   }
 

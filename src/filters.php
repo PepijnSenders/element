@@ -11,6 +11,8 @@ App::before(function() {
 
 Route::filter('element__cms', function() {
   if (!Auth::element2cms()->check()) {
-    return Redirect::route('element::pages.users.login');
+    return Redirect::route('element::pages.users.login', [
+      'url' => Request::path(),
+    ]);
   }
 });

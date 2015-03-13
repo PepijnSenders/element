@@ -25,6 +25,7 @@ class UsersController extends BaseController {
       ]);
     } catch (ValidatorException $e) {
       return View::make('element::pages.users.login')
+        ->with('url', Input::get('url'))
         ->with('messages', $e->getMessageBag()->getMessages());
     }
 
@@ -34,9 +35,14 @@ class UsersController extends BaseController {
     ]);
 
     if ($attempt) {
-      return Redirect::route('element::pages.home');
+      if (Input::has('url')) {
+        return Redirect::to(Input::get('url'));
+      } else {
+        return Redirect::route('element::pages.home');
+      }
     } else {
       return View::make('element::pages.users.login')
+        ->with('url', Input::get('url'))
         ->with('messages', [
           ['Login failed.'],
         ]);

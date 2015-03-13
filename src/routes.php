@@ -40,6 +40,7 @@ Route::group(['prefix' => Config::get('element::cms.prefix', 'cms'), 'namespace'
       Route::group(['prefix' => 'minimap'], function() {
         Route::post('/load', ['as' => 'element::api.manager.minimap.load', 'uses' => 'MinimapsController@load']);
         Route::post('/finalize', ['as' => 'element::api.manager.minimap.finalize', 'uses' => 'MinimapsController@finalize']);
+        Route::post('/finish', ['as' => 'element::api.manager.minimap.finish', 'uses' => 'MinimapsController@finish']);
       });
 
     });
