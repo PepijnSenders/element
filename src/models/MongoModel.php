@@ -10,6 +10,7 @@ use Pep\Element\Validation\ValidatorException;
 abstract class MongoModel extends Moloquent {
 
   protected $rules = [];
+  protected $connection = 'pep__element';
 
   public function validate($extraRules = []) {
     $rules = array_merge($this->rules, $extraRules);
@@ -23,6 +24,8 @@ abstract class MongoModel extends Moloquent {
       $rules,
       Config::get('element::validation.messages', [])
     );
+
+    $validator->getPresenceVerifier()->setConnection($this->connection);
 
     if ($validator->fails()) {
       throw new ValidatorException($validator->messages());

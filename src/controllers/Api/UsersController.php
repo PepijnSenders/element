@@ -29,7 +29,7 @@ class UsersController extends BaseController {
         ->with('messages', $e->getMessageBag()->getMessages());
     }
 
-    $attempt = Auth::element2cms()->attempt([
+    $attempt = Auth::pep__element()->attempt([
       'email' => $user->email,
       'password' => $user->password,
     ]);
@@ -50,7 +50,7 @@ class UsersController extends BaseController {
   }
 
   public function logout() {
-    Auth::element2cms()->logout();
+    Auth::pep__element()->logout();
 
     return Redirect::route('element::pages.users.login');
   }

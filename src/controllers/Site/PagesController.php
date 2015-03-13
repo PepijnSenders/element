@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class PagesController extends BaseController {
 
   public function home() {
-    $user = Auth::element2cms()->user();
+    $user = Auth::pep__element()->user();
 
     return View::make('element::pages.home')
       ->with('user', $user);

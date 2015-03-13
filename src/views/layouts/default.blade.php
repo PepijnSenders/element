@@ -17,7 +17,7 @@
 </head>
 <body ng-app="elementApp">
 
-  @if (Auth::element2cms()->check())
+  @if (Auth::pep__element()->check())
   @include('element::partials.header')
   @endif
 

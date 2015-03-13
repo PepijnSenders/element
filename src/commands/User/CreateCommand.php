@@ -15,10 +15,13 @@ class CreateCommand extends ElementCommand {
   public function fire() {
     $user = new CmsUser;
 
-    $this->info('Provide admin credentials.');
-    $user->email = $this->ask('Admin email:');
-    $user->name = $this->ask('Amin name:');
-    $user->password = Hash::make($this->secret('Admin password:'));
+    $this->info("Provide admin credentials.\n\n");
+
+    $user->name = $this->ask('Amin name: ');
+    $user->email = $this->ask('Admin email: ');
+    $user->password = Hash::make($this->secret('Admin password: '));
+
+    $this->info("\n\n");
 
     try {
       $user->validate();

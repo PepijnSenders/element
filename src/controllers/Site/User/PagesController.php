@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 class PagesController extends BaseController {
 
   public function login() {
-    if (Auth::element2cms()->check()) {
+    if (Auth::pep__element()->check()) {
       return Redirect::route('element::pages.home');
     }
 
